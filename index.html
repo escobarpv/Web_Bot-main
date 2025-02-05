@@ -1,0 +1,157 @@
+<!-- Definición del tipo de documento HTML -->
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+
+    <script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Chat Bot</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  </head>
+  
+<body class="bg-success-subtle">
+
+  <section>
+    <div class="container py-5">
+  
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-4">
+          
+  
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center p-3">
+              <h5 class="mb-0">Chat Bot</h5>
+            </div>
+
+            <div id="chat-container" class="card-body" style="position: relative; height: 400px; overflow: auto;">
+              
+  
+              <!--<div class="d-flex flex-row justify-content-end mb-4 pt-1">
+                <div>
+                  <p class="small p-2 me-3 mb-3 rounded-3 bg-primary-subtle">Question</p>
+                </div>
+                <img src="assets/user-avatar-1-256x255.png"
+                  alt="avatar 1" style="width: 45px; height: 100%;">
+              </div>
+
+              <div class="d-flex flex-row justify-content-start">
+                <img src="https://static-00.iconduck.com/assets.00/user-avatar-robot-icon-511x512-gi8lbmym.png" alt="avatar" 
+                style="width: 45px; height: 100%;">
+                <div>
+                  <p class="small p-2 ms-3 mb-3 rounded-3 bg-body-tertiary">Answer</p>
+                </div>
+              </div>-->
+  
+            </div>
+            <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+              <div class="input-group mb-0">
+                <input id="userInput" type="text" class="form-control" placeholder="Escribe un mensaje"
+                  aria-label="Recipient's username" aria-describedby="button-addon2" />
+                <button id="sendBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" type="button" id="button-addon2" style="padding-top: .55rem;">
+                  Enviar
+                </button>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </section>
+
+  <script>
+    // Referencia al contenedor del chat
+    const chatContainer = document.getElementById('chat-container');
+    // Referencia al campo de texto donde se ingresa el mensaje
+    const userInput = document.getElementById('userInput');
+    // Referencia al botón que enviará el mensaje
+    const sendBtn = document.getElementById('sendBtn');
+
+    // Función para crear y añadir un nuevo mensaje al contenedor.
+    // Si isAssistant es true, se aplica el estilo del chatbot.
+    function addMessage(text, isAssistant = false) {
+      const div = document.createElement('div');
+      div.className = 'd-flex flex-row justify-content-' + (isAssistant ? 'start' : 'end');
+
+      const img = document.createElement('img');
+      img.src = isAssistant 
+        ? 'https://static-00.iconduck.com/assets.00/user-avatar-robot-icon-511x512-gi8lbmym.png' 
+        : 'https://i.ibb.co/jvf5rMrP/user-avatar-1-256x255.png';
+      img.alt = 'avatar';
+      img.style.width = '45px';
+      img.style.height = '100%';
+
+      const messageDiv = document.createElement('div');
+      const p = document.createElement('p');
+      p.className = 'small p-2 ' + (isAssistant ? 'ms-3 bg-body-tertiary' : 'me-3 bg-primary-subtle') + ' mb-3 rounded-3';
+      p.textContent = text;
+      messageDiv.appendChild(p);
+
+      if (isAssistant) {
+        div.appendChild(img);
+        div.appendChild(messageDiv);
+      } else {
+        div.appendChild(messageDiv);
+        div.appendChild(img);
+      }
+
+      chatContainer.appendChild(div);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    // Función que envía el mensaje del usuario y procesa la respuesta.
+    function sendMessage() {
+      // Si el botón o el campo ya están deshabilitados, no se procesa el envío.
+      if (sendBtn.disabled) return;
+
+      const text = userInput.value.trim();
+      if (text) {
+        addMessage(text); // Agrega el mensaje del usuario
+        userInput.value = '';
+        
+        // Deshabilitar tanto el botón como el campo de entrada para impedir nuevos envíos
+        sendBtn.disabled = true;
+        userInput.disabled = true;
+        sendBtn.textContent = 'Enviando...';
+
+        fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        })
+        .then(response => response.json())
+        .then(data => {
+          addMessage(data.reply, true); // Publica el mensaje del asistente
+        })
+        .catch(error => {
+          addMessage('Error al comunicarse con el servidor', true);
+          console.error('Error:', error);
+        })
+        .finally(() => {
+          // Rehabilitar el botón y el campo de entrada
+          sendBtn.disabled = false;
+          userInput.disabled = false;
+          sendBtn.textContent = 'Enviar';
+        });
+      }
+    }
+
+    // Evento para enviar mensaje cuando se hace clic en el botón
+    sendBtn.addEventListener('click', sendMessage);
+    // Evento para enviar mensaje al presionar Enter dentro del campo de texto
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+</html>

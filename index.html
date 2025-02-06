@@ -79,6 +79,11 @@
     // Referencia al botón que enviará el mensaje
     const sendBtn = document.getElementById('sendBtn');
 
+    // Función para eliminar referencias con el formato "【4:1†sostenibilidad_evento.txt】"
+    function removeReference(text) {
+      return text.replace(/【\d+:\d+†[^】]+】/g, "");
+    }
+
     // Función para crear y añadir un nuevo mensaje al contenedor.
     // Si isAssistant es true, se aplica el estilo del chatbot.
     function addMessage(text, isAssistant = false) {
@@ -97,8 +102,8 @@
       const messageDiv = document.createElement('div');
       const p = document.createElement('p');
       p.className = 'small p-2 ' + (isAssistant ? 'ms-3 bg-body-tertiary' : 'me-3 bg-primary-subtle') + ' mb-3 rounded-3';
-      // Si es un mensaje del asistente, convertir Markdown a HTML usando marked
-      p.innerHTML = isAssistant ? marked.parse(text) : text;
+      // Para mensajes del asistente, eliminar la referencia y luego convertir Markdown a HTML
+      p.innerHTML = isAssistant ? marked.parse(removeReference(text)) : text;
       messageDiv.appendChild(p);
 
       if (isAssistant) {

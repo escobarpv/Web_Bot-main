@@ -35,7 +35,7 @@
               <h5 class="mb-0" style="color:white;">Chat Bot</h5>
             </div>
 
-            <div id="chat-container" class="card-body" style="position: relative; height: 550px; overflow: auto;">
+            <div id="chat-container" class="card-body" style="position: relative; height: 400px; overflow: auto;">
 
               <!--<div class="d-flex flex-row justify-content-end mb-4 pt-1">
                 <div>
@@ -98,7 +98,8 @@
       const messageDiv = document.createElement('div');
       const p = document.createElement('p');
       p.className = 'small p-2 ' + (isAssistant ? 'ms-3 bg-body-tertiary' : 'me-3 bg-primary-subtle') + ' mb-3 rounded-3';
-      p.textContent = text;
+      // Si es un mensaje del asistente, convertir Markdown a HTML usando marked
+      p.innerHTML = isAssistant ? marked.parse(text) : text;
       messageDiv.appendChild(p);
 
       if (isAssistant) {
@@ -158,6 +159,9 @@
         sendMessage();
       }
     });
+
+    // Mostrar mensaje inicial de bienvenida del asistente
+    addMessage("¡Bienvenido! Soy un ChatBot entrenado para ayudarte con lo que necesites sobre el próximo evento Schneider Tech Event 2025 ¿En qué puedo ayudarte hoy?", true);
   </script>
   
 </body>

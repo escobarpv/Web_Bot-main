@@ -1,173 +1,472 @@
-<!-- Definición del tipo de documento HTML -->
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
-  <head>
-
-    <!--Markdown js-->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
+<html lang="es" data-bs-theme="auto">
+	<head>
     
-    <!--<script src="../assets/js/color-modes.js"></script>-->
-
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Chat Bot</title>
+		<title>Chat</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
 
-  </head>
-  
-  <body class="bg-success-subtle" style="background-image:
-  url('https://cdn.discordapp.com/attachments/1068298234281341038/1337098882244411422/paul.escobar_a_concept_image_about_care_of_the_enviroment_and_a_39466739-9dbf-4baa-bf45-e528ae14f2ff.png?ex=67a635df&is=67a4e45f&hm=b1af33fb571921351f1841aa7ae34b9cd737ff87e5cb25067e53fb3d4c298849&');
-  background-position: center;">
+    <style>
+    body,html{
+			height: 100%;
+			margin: 0;
+			background: #7F7FD5;
+	    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+	    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+		}
+		.chat{
+			margin-top: auto;
+			margin-bottom: auto;
+		}
+		.card{
+			height: 600px; /* altura en desktop */
+			border-radius: 15px !important;
+			background-color: rgba(0,0,0,0.4) !important;
+		}
+		.contacts_body{
+			padding:  0.75rem 0 !important;
+			overflow-y: auto;
+			white-space: nowrap;
+		}
+		.msg_card_body{
+			overflow-y: auto;
+		}
+		.card-header{
+			border-radius: 15px 15px 0 0 !important;
+			border-bottom: 0 !important;
+		}
+	 .card-footer{
+		  border-radius: 0 0 15px 15px !important;
+      border-top: 0 !important;
+      padding: 10px;
+    }
+		.container{
+			align-content: center;
+		}
+		.search{
+			border-radius: 15px 0 0 15px !important;
+			background-color: rgba(0,0,0,0.3) !important;
+			border:0 !important;
+			color:white !important;
+		}
+		.search:focus{
+		     box-shadow:none !important;
+           outline:0px !important;
+		}
+		.type_msg{
+			background-color: rgba(0,0,0,0.3) !important;
+			border:0 !important;
+			color:white !important;
+			height: 48px !important;
+			overflow-y: auto;
+		}
+    .type_msg:focus{
+      box-shadow:none !important;
+      outline:0px !important;
+		}
+		.text_input_btn{
+      border-radius: 10px 0 0 10px !important;
+      background-color: rgba(0,0,0,0.3) !important;
+			border:0 !important;
+			color: white !important;
+			cursor: pointer;
+		}
+		.send_btn{
+	    border-radius: 0 10px 10px 0 !important;
+	    background-color: rgba(0,0,0,0.3) !important;
+			border:0 !important;
+			color: #ced4da !important;
+			cursor: pointer;
+		}
+		.search_btn{
+			border-radius: 0 15px 15px 0 !important;
+			background-color: rgba(0,0,0,0.3) !important;
+			border:0 !important;
+			color: white !important;
+			cursor: pointer;
+		}
+		.contacts{
+			list-style: none;
+			padding: 0;
+		}
+		.contacts li{
+			width: 100% !important;
+			padding: 5px 10px;
+			margin-bottom: 15px !important;
+		}
+	  .active{
+			background-color: rgba(0,0,0,0.3);
+	  }
+		.user_img{
+			height: 70px;
+			width: 70px;
+			border:1.5px solid #f5f6fa;
+      background-color: white;
+		}
+		.user_img_msg{
+			height: 40px;
+			width: 40px;
+			border:1.5px solid #f5f6fa;
+		}
+	  .img_cont{
+			position: relative;
+			height: 70px;
+			width: 70px;
+    }
+    .img_cont_msg{
+        height: 40px;
+        width: 40px;
+    }
+    .online_icon{
+      position: absolute;
+      height: 15px;
+      width:15px;
+      background-color: #4cd137;
+      border-radius: 50%;
+      bottom: 0.2em;
+      right: 0.4em;
+      border:1.5px solid white;
+    }
+    .offline{
+      background-color: #c23616 !important;
+    }
+    .user_info{
+      margin-top: auto;
+      margin-left: 15px;
+    }
+    .user_info span{
+      font-size: 20px;
+      color: white;
+    }
+    .user_info p{
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    }
+    .video_cam{
+      margin-left: 50px;
+      margin-top: 5px;
+    }
+    .video_cam span{
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      margin-right: 20px;
+    }
+    .msg_container{
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: 10px;
+      border-radius: 0 15px 15px 15px;
+      background-color: #82ccdd;
+      padding: 10px;
+      position: relative;
+    }
+    .msg_container p {
+      margin-bottom: 0px !important;
+    }
+    .msg_container_send{
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-right: 10px;
+      border-radius: 15px 0 15px 15px;
+      background-color: #78e08f;
+      padding: 10px;
+      position: relative;
+    }
+    .msg_time{
+      position: absolute;
+      left: 0;
+      bottom: -15px;
+      color: rgba(255,255,255,0.5);
+      font-size: 10px;
+    }
+    .msg_time_send{
+      position: absolute;
+      right:0;
+      bottom: -15px;
+      color: rgba(255,255,255,0.5);
+      font-size: 10px;
+    }
+    .msg_head{
+      position: relative;
+    }
+    #action_menu_btn{
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .action_menu{
+      z-index: 1;
+      position: absolute;
+      padding: 15px 0;
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      border-radius: 15px;
+      top: 30px;
+      right: 15px;
+      display: none;
+    }
+    .action_menu ul{
+      list-style: none;
+      padding: 0;
+    margin: 0;
+    }
+    .action_menu ul li{
+      width: 100%;
+      padding: 10px 15px;
+      margin-bottom: 5px;
+    }
+    .action_menu ul li i{
+      padding-right: 10px;
+    
+    }
+    .action_menu ul li:hover{
+      cursor: pointer;
+      background-color: rgba(0,0,0,0.2);
+    }
+    @media(max-width: 576px){
+      .contacts_card{
+        margin-bottom: 15px !important;
+      }
+    }
+    @media(max-width:768px){
+      .chat {
+        margin-top: 15px !important;
+      }
+      .card{
+			  height: 600px;  /* altura en moviles */
+		  }
+    }
+    .justify-content-start .msg_container:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      border: 18px solid transparent;
+      border-top-width: 0;
+      left: -28px;
+      border-right-color: #82ccdd;
+      border-right-width: 16px;
+    }
+    .justify-content-end .msg_container_send:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      border: 18px solid transparent;
+      border-top-width: 0;
+      right: -28px;
+      border-left-color: #78e08f;
+      border-left-width: 16px;
+    }
+    </style>
+	</head>
 
-  <section>
-    <div class="container py-3">
-  
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-8 col-lg-6 col-xl-4">
-          
-  
-          <div class="card" style="border:none;">
-            <div class="card-header d-flex justify-content-between align-items-center p-3" style="background-color: #3DCD58;">
-              <img src="https://www.afjglobal.com/wp-content/uploads/2020/05/schneider-1.jpg" alt="avatar 1" style="width: 45px; height: 100%; border-radius: 100%;">
-              <h5 class="mb-0" style="color:white;">Chat Bot</h5>
+	<body>
+		<div class="container-fluid h-100">
+			<div class="row justify-content-center h-100">
+				<div class="col-md-10 col-lg-10 col-xl-8 chat">
+					<div class="card">
+						<div class="card-header msg_head">
+							<div class="d-flex bd-highlight">
+								<div class="img_cont">
+									<img src="https://www.eternityx.com/wp-content/uploads/2021/09/Schneider-Electric-Logo.png" class="rounded-circle user_img">
+									<span class="online_icon"></span>
+								</div>
+								<div class="user_info">
+									<span>Schneider Tech Event 2025</span>
+                  <p>6 de marzo de 2025 en Santiago, Chile.</p>
+								</div>
+							</div>
+							
+						</div>
+						<div id="chat-container" class="card-body msg_card_body">
+
+							<!--<div class="d-flex justify-content-start mb-4">
+								<div class="img_cont_msg">
+									<img src="https://img.logoipsum.com/355.svg" class="rounded-circle user_img_msg">
+								</div>
+								<div class="msg_container">
+									Hola, como estás?
+								</div>
+							</div>
+              
+							<div class="d-flex justify-content-end mb-4">
+								<div class="msg_container_send">
+									Estoy bien y tú?
+								</div>
+								<div class="img_cont_msg">
+							    <img src="https://i.ibb.co/jvf5rMrP/user-avatar-1-256x255.png" class="rounded-circle user_img_msg">
+								</div>
+							</div>-->
+						
             </div>
-
-            <div id="chat-container" class="card-body" style="position: relative; height: 400px; overflow: auto;">
-
-              <!--<div class="d-flex flex-row justify-content-end mb-4 pt-1">
-                <div>
-                  <p class="small p-2 me-3 mb-3 rounded-3 bg-primary-subtle">Question</p>
-                </div>
-                <img src="assets/user-avatar-1-256x255.png"
-                  alt="avatar 1" style="width: 45px; height: 100%;">
-              </div>
-
-              <div class="d-flex flex-row justify-content-start">
-                <img src="https://static-00.iconduck.com/assets.00/user-avatar-robot-icon-511x512-gi8lbmym.png" alt="avatar" 
-                style="width: 45px; height: 100%;">
-                <div>
-                  <p class="small p-2 ms-3 mb-3 rounded-3 bg-body-tertiary">Answer</p>
-                </div>
-              </div>-->
-
-            </div>
-
-            <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
-              <div class="input-group mb-0">
-                <input id="userInput" type="text" class="form-control" placeholder="Escribe un mensaje"
+						<div class="card-footer">
+							<div class="input-group">
+                <input id="userInput" type="text" class="form-control type_msg text_input_btn" placeholder="Escribe un mensaje..."
                   aria-label="Recipient's username" aria-describedby="button-addon2" />
-                <button id="sendBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" type="button" id="button-addon2" style="padding-top: .55rem;">
-                  Enviar
-                </button>
-              </div>
-            </div>
-          </div>
-  
-        </div>
-      </div>
-  
-    </div>
-  </section>
+								<div class="input-group-append">
+                  <button id="sendBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary send_btn" type="button" id="button-addon2" style="padding-top: .55rem;">
+                    Enviar
+                  </button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-  <script>
-    // Referencia al contenedor del chat
-    const chatContainer = document.getElementById('chat-container');
-    // Referencia al campo de texto donde se ingresa el mensaje
-    const userInput = document.getElementById('userInput');
-    // Referencia al botón que enviará el mensaje
-    const sendBtn = document.getElementById('sendBtn');
+    <script>
+        // Referencia al contenedor del chat
+        const chatContainer = document.getElementById('chat-container');
+        // Referencia al campo de texto donde se ingresa el mensaje
+        const userInput = document.getElementById('userInput');
+        // Referencia al botón que enviará el mensaje
+        const sendBtn = document.getElementById('sendBtn');
 
-    // Función para eliminar referencias con el formato "【4:1†sostenibilidad_evento.txt】"
-    function removeReference(text) {
-      return text.replace(/【\d+:\d+†[^】]+】/g, "");
-    }
+        // Función para eliminar referencias con el formato "【4:1†sostenibilidad_evento.txt】"
+        function removeReference(text) {
+        return text.replace(/【\d+:\d+†[^】]+】/g, "");
+        }
 
-    // Función para crear y añadir un nuevo mensaje al contenedor.
-    // Si isAssistant es true, se aplica el estilo del chatbot.
-    function addMessage(text, isAssistant = false) {
-      const div = document.createElement('div');
-      div.className = 'd-flex flex-row justify-content-' + (isAssistant ? 'start' : 'end');
+        // Función para crear y añadir un nuevo mensaje al contenedor.
+        // Si isAssistant es true, se aplica el estilo del chatbot.
+        function addMessage(text, isAssistant = false) {
+          const div = document.createElement('div');
+          div.className = 'd-flex justify-content-' + (isAssistant ? 'start' : 'end') + ' mb-4';
 
-      const img = document.createElement('img');
-      img.src = isAssistant 
-        ? 'https://scontent.fscl18-1.fna.fbcdn.net/v/t39.30808-6/352675612_188388234189060_7159966791076272593_n.png?_nc_cat=1&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=gS4QYuPKiusQ7kNvgFPM2DK&_nc_oc=Adjw5Ikl1Xw8McmGnJSgxFdW_HjzrZTYehORkEykTBXD2qO0W2Tw3RcZi8ex-DRDWkM&_nc_zt=23&_nc_ht=scontent.fscl18-1.fna&_nc_gid=A7BIXeD0gkOS1igB6jzINci&oh=00_AYAH7jMCwukZb6mYG1AalW9QBYqjbDYbRHHr_gg4IR3ejw&oe=67AAB08E' 
-        : 'https://i.ibb.co/jvf5rMrP/user-avatar-1-256x255.png';
-      img.alt = 'avatar';
-      img.style.width = '45px';
-      img.style.height = '100%';
-      img.style.borderRadius = '100%';
+          const imgCont = document.createElement('div');
+          imgCont.className = 'img_cont_msg';
 
-      const messageDiv = document.createElement('div');
-      const p = document.createElement('p');
-      p.className = 'small p-2 ' + (isAssistant ? 'ms-3 bg-body-tertiary' : 'me-3 bg-primary-subtle') + ' mb-3 rounded-3';
-      // Para mensajes del asistente, eliminar la referencia y luego convertir Markdown a HTML
-      p.innerHTML = isAssistant ? marked.parse(removeReference(text)) : text;
-      messageDiv.appendChild(p);
+          const img = document.createElement('img');
+          img.src = isAssistant 
+            ? 'https://static-00.iconduck.com/assets.00/user-avatar-robot-icon-511x512-gi8lbmym.png' 
+            : 'https://i.ibb.co/jvf5rMrP/user-avatar-1-256x255.png';
+          img.alt = 'avatar';
+          img.className = 'rounded-circle user_img_msg';
 
-      if (isAssistant) {
-        div.appendChild(img);
-        div.appendChild(messageDiv);
-      } else {
-        div.appendChild(messageDiv);
-        div.appendChild(img);
-      }
+          imgCont.appendChild(img);
 
-      chatContainer.appendChild(div);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
+          const msgContainer = document.createElement('div');
+          msgContainer.className = isAssistant ? 'msg_container' : 'msg_container_send';
+          // Para mensajes del asistente, eliminar la referencia y luego convertir Markdown a HTML
+          msgContainer.innerHTML = isAssistant ? marked.parse(removeReference(text)) : text;
 
-    // Función que envía el mensaje del usuario y procesa la respuesta.
-    function sendMessage() {
-      // Si el botón o el campo ya están deshabilitados, no se procesa el envío.
-      if (sendBtn.disabled) return;
+          if (isAssistant) {
+            div.appendChild(imgCont);
+            div.appendChild(msgContainer);
+          } else {
+            div.appendChild(msgContainer);
+            div.appendChild(imgCont);
+          }
 
-      const text = userInput.value.trim();
-      if (text) {
-        addMessage(text); // Agrega el mensaje del usuario
-        userInput.value = '';
-        
-        // Deshabilitar tanto el botón como el campo de entrada para impedir nuevos envíos
-        sendBtn.disabled = true;
-        userInput.disabled = true;
-        sendBtn.textContent = 'Enviando...';
+          chatContainer.appendChild(div);
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
 
-        fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text })
-        })
-        .then(response => response.json())
-        .then(data => {
-          addMessage(data.reply, true); // Publica el mensaje del asistente
-        })
-        .catch(error => {
-          addMessage('Error al comunicarse con el servidor', true);
-          console.error('Error:', error);
-        })
-        .finally(() => {
-          // Rehabilitar el botón y el campo de entrada
-          sendBtn.disabled = false;
-          userInput.disabled = false;
-          sendBtn.textContent = 'Enviar';
+        // Función "bot is typing..."
+        function showTypingMessage() {
+          const typingDiv = document.createElement('div');
+          typingDiv.className = 'd-flex justify-content-start mb-4 typingMessage';
+
+          const imgCont = document.createElement('div');
+          imgCont.className = 'img_cont_msg';
+
+          const img = document.createElement('img');
+          img.src = 'https://static-00.iconduck.com/assets.00/user-avatar-robot-icon-511x512-gi8lbmym.png';
+          img.alt = 'avatar';
+          img.className = 'rounded-circle user_img_msg';
+
+          imgCont.appendChild(img);
+
+          const msgContainer = document.createElement('div');
+          msgContainer.className = 'msg_container';
+          msgContainer.textContent = "‎";
+
+          typingDiv.appendChild(imgCont);
+          typingDiv.appendChild(msgContainer);
+
+          chatContainer.appendChild(typingDiv);
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+
+          // Animacion de los puntos
+          let dotCount = 0;
+          typingInterval = setInterval(() => {
+              dotCount = (dotCount + 1) % 4;
+              msgContainer.textContent = "‎" + '.'.repeat(dotCount);
+          }, 500);
+        }
+
+        // Borrar "bot is typing..."
+        function removeTypingMessage() {
+          const typingMessage = document.querySelector('.typingMessage');
+          if (typingMessage) {
+              typingMessage.remove();
+          }
+        }
+
+        // Función que envía el mensaje del usuario y procesa la respuesta.
+        function sendMessage() {
+          const text = userInput.value.trim();
+          if (text !== '') {
+            addMessage(text, false); // Publica el mensaje del usuario
+            userInput.value = '';
+
+            // Deshabilitar el botón y el campo de entrada
+            sendBtn.disabled = true;
+            userInput.disabled = true;
+            sendBtn.textContent = 'Enviar';
+
+            // Mostrar "bot is typing..." message
+            showTypingMessage();
+
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Borrar "bot is typing..." message
+                removeTypingMessage();
+                addMessage(data.reply, true); // Publica el mensaje del asistente
+            })
+            .catch(error => {
+                removeTypingMessage();
+                addMessage('Error al comunicarse con el servidor', true);
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // Rehabilitar el botón y el campo de entrada
+                sendBtn.disabled = false;
+                userInput.disabled = false;
+                sendBtn.textContent = 'Enviar';
+            });
+          }
+        }
+
+        // Evento para enviar mensaje cuando se hace clic en el botón
+        sendBtn.addEventListener('click', sendMessage);
+        // Evento para enviar mensaje al presionar Enter dentro del campo de texto
+        userInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+              sendMessage();
+          }
         });
-      }
-    }
 
-    // Evento para enviar mensaje cuando se hace clic en el botón
-    sendBtn.addEventListener('click', sendMessage);
-    // Evento para enviar mensaje al presionar Enter dentro del campo de texto
-    userInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
+        // Mostrar mensaje inicial de bienvenida del asistente
+        addMessage("¡Bienvenido! Soy un ChatBot entrenado para ayudarte con lo que necesites sobre el próximo evento Schneider Tech Event 2025 ¿En qué puedo ayudarte hoy?", true);
 
-    // Mostrar mensaje inicial de bienvenida del asistente
-    addMessage("¡Bienvenido! Soy un ChatBot entrenado para ayudarte con lo que necesites sobre el próximo evento Schneider Tech Event 2025 ¿En qué puedo ayudarte hoy?", true);
-  </script>
-  
-</body>
+    </script>
+	</body>
 </html>

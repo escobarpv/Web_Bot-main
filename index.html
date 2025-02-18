@@ -4,6 +4,7 @@
     
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#ced4da">
 		<title>KartBot</title>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -17,7 +18,7 @@
 			height: 100%;
 			margin: 0;
       background-image: url("https://i.imgur.com/tHQZkXn.jpeg"); /* The image used */
-      background-color: #22653f; /* Used if the image is unavailable */
+      background-color: #ffffff; /* Used if the image is unavailable */
       background-position: center; /* Center the image */
       background-repeat: no-repeat; /* Do not repeat the image */
       background-size: cover; /* Resize the background image to cover the entire container */
@@ -289,6 +290,22 @@
     #userInput::-ms-input-placeholder { /* Edge 12 -18 */
       color: #ced4da;
     }
+
+    /* Nueva regla para mantener las imágenes del banner en línea y agregar espacio */
+    .card-header .container {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    @media (max-width: 768px) {
+        .card-header .container {
+            justify-content: center;
+            gap: 5px;
+        }
+    }
     </style>
 	</head>
 
@@ -305,10 +322,10 @@
                   <img class="logo" src="https://i.imgur.com/2L8UmSR.png" alt="...">
                 </a>
                 <a class="navbar-brand" href="#">
-                  <img class="logo" src="https://cdn.worldvectorlogo.com/logos/dell-technologies-logo.svg" alt="...">
+                  <img class="logo" src="https://i.imgur.com/U3QSzo0.png" alt="...">
                 </a>
                 <a class="navbar-brand" href="#">
-                  <img class="logo" src="https://i.imgur.com/U3QSzo0.png" alt="...">
+                  <img class="logo" src="https://cdn.worldvectorlogo.com/logos/dell-technologies-logo.svg" alt="...">
                 </a>
               </div>
             </div>

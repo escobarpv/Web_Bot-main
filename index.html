@@ -16,11 +16,13 @@
     body,html{
 			height: 100%;
 			margin: 0;
-			background: #22653f;
-      background-image: linear-gradient(to right top, #22653f, #247448, #268451, #27945a, #28a563, #3bb16f, #4cbd7b, #5cc988, #79d39a, #93dcad, #ace6bf, #c4efd2);
-      background-image: -webkit-linear-gradient(to right top, #22653f, #247448, #268451, #27945a, #28a563, #3bb16f, #4cbd7b, #5cc988, #79d39a, #93dcad, #ace6bf, #c4efd2);
-	    /* background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); */
-	    /* background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); */
+      background-image: url("https://i.imgur.com/tHQZkXn.jpeg"); /* The image used */
+      background-color: #22653f; /* Used if the image is unavailable */
+      background-position: center; /* Center the image */
+      background-repeat: no-repeat; /* Do not repeat the image */
+      background-size: cover; /* Resize the background image to cover the entire container */
+      /* background-image: linear-gradient(to right top, #22653f, #247448, #268451, #27945a, #28a563, #3bb16f, #4cbd7b, #5cc988, #79d39a, #93dcad, #ace6bf, #c4efd2); */
+      /* background-image: -webkit-linear-gradient(to right top, #22653f, #247448, #268451, #27945a, #28a563, #3bb16f, #4cbd7b, #5cc988, #79d39a, #93dcad, #ace6bf, #c4efd2); */
 		}
 		.chat{
 			margin-top: auto;
@@ -165,7 +167,7 @@
       margin-bottom: auto;
       margin-left: 10px;
       border-radius: 0 15px 15px 15px;
-      background-color: #c4efd2;
+      background-color: #82ccdd;
       padding: 10px;
       position: relative;
     }
@@ -235,6 +237,12 @@
       cursor: pointer;
       background-color: rgba(0,0,0,0.2);
     }
+    .logo_sm {
+      height: 32px;
+    }
+    .logo_xs{
+      height:28px;
+    }
     @media(max-width: 576px){
       .contacts_card{
         margin-bottom: 15px !important;
@@ -246,7 +254,13 @@
       }
       .card{
 			  height: calc(100vh - 120px);  /* altura reducida para móviles */
-		  }
+		  }+
+      .logo_sm {
+        height:26px;
+      }
+      .logo_xs {
+        height:20px;
+      }
     }
     .justify-content-start .msg_container:before {
       content: '';
@@ -256,7 +270,7 @@
       border: 18px solid transparent;
       border-top-width: 0;
       left: -28px;
-      border-right-color: #c4efd2;
+      border-right-color: #82ccdd;
       border-right-width: 16px;
     }
     .justify-content-end .msg_container_send:after {
@@ -270,26 +284,51 @@
       border-left-color: #78e08f;
       border-left-width: 16px;
     }
+    .navbar {
+      background: rgba(0,0,0,0.4) !important;
+    }
+    #userInput::placeholder {
+    color: #ced4da;
+    opacity: 1; /* Firefox */
+    }
+    #userInput::-ms-input-placeholder { /* Edge 12 -18 */
+      color: #ced4da;
+    }
     </style>
 	</head>
 
 	<body>
+    
 		<div class="container-fluid h-100">
 			<div class="row justify-content-center h-100">
 				<div class="col-md-10 col-lg-10 col-xl-8 chat">
 					<div class="card">
+
+            <div class="card-header navbar navbar-expand-lg bg-light static-top">
+              <div class="container">
+                <a class="navbar-brand" href="#">
+                  <img class="logo_sm" src="https://upload.wikimedia.org/wikipedia/commons/0/08/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_APC_by_Schneider_Electric.png?20160516133930" alt="...">
+                </a>
+                <a class="navbar-brand" href="#">
+                  <img class="logo_xs" src="https://cdn.worldvectorlogo.com/logos/dell-technologies-logo.svg" alt="...">
+                </a>
+                <a class="navbar-brand" href="#">
+                  <img class="logo_sm" src="http://smartnet.tecnoglobal.net/wp-content/uploads/2020/05/logo-Tecnoglobal.png" alt="...">
+                </a>
+              </div>
+            </div>
+
 						<div class="card-header msg_head">
 							<div class="d-flex bd-highlight">
 								<div class="img_cont">
-									<img src="https://www.eternityx.com/wp-content/uploads/2021/09/Schneider-Electric-Logo.png" class="rounded-circle user_img">
+									<img src="https://i.imgur.com/Rzi614z.png" class="rounded-circle user_img">
 									<span class="online_icon"></span>
 								</div>
 								<div class="user_info">
-									<span>Schneider Tech Event 2025</span>
-                  <p>6 de marzo de 2025 en Santiago, Chile.</p>
+									<span>Karting Experience</span>
+                  <p>Miércoles 12 de Marzo</p>
 								</div>
 							</div>
-							
 						</div>
 						<div id="chat-container" class="card-body msg_card_body">
 

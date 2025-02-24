@@ -39,7 +39,7 @@ const server = http.createServer((req, res) => {
         // Inicia el run en el thread con streaming de respuesta.
         let replyText = "";
         openai.beta.threads.runs.stream(activeThreadId, {
-          assistant_id: "asst_MTmmF7jvBjbKuP5YP2NEci5f"
+          assistant_id: "asst_eBcaqW5hB4Y5AyKGWwk587Sn"
         })
           .on('textCreated', (text) => {
             // Opcional: acción al iniciar la respuesta.

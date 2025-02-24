@@ -35,19 +35,11 @@
 			margin-bottom: auto;
 		}
 		.card{
-			height: calc(75vh); /* para notebooks */
-      border-radius: 15px !important;
-		}
-    .card-light {
-      background-color: rgba(247,247,247,0.4)!important
-    }
-    .card-dark {
+			height: calc(90vh); /* para notebooks */
+			border-radius: 15px !important;
 			background-color: rgba(0,0,0,0.4) !important;
       border: none !important;
-    }
-    .card-light .card-header{
-      background-color: rgba(255,255,255,0.3) !important
-    }
+		}
 		.contacts_body{
 			padding:  0.75rem 0 !important;
 			overflow-y: auto;
@@ -89,24 +81,15 @@
       box-shadow:none !important;
       outline:0px !important;
 		}
-		.card-light .text_input_btn{
-      border-radius: 10px 0 0 10px !important;
-      background-color: rgba(255,255,255,1) !important;
-			border:0 !important;
-			color: black !important;
-			cursor: text; /* se cambia de pointer a text */
-		}
-    .card-dark text_input_btn{
+		.text_input_btn{
       border-radius: 10px 0 0 10px !important;
       background-color: rgba(0,0,0,0.3) !important;
 			border:0 !important;
 			color: white !important;
 			cursor: text; /* se cambia de pointer a text */
-    }
-    .send_btn{
+		}
+		.send_btn{
 	    border-radius: 0 10px 10px 0 !important;
-    }
-		.card-dark .btn-dark{
 	    background-color: rgba(0,0,0,0.3) !important;
 			border:0 !important;
 			color: #ced4da !important;
@@ -168,21 +151,13 @@
       margin-top: auto;
       margin-left: 15px;
     }
-    .card-dark .user_info span{
+    .user_info span{
       font-size: 20px;
       color: white;
     }
-    .card-dark .user_info p{
+    .user_info p{
     font-size: 10px;
     color: rgba(255,255,255,0.6);
-    }
-    .card-light .user_info span{
-      font-size: 20px;
-      color: #4b4b4b;
-    }
-    .card-light .user_info p{
-    font-size: 10px;
-    color: rgba(38,38,38,0.6);
     }
     .video_cam{
       margin-left: 50px;
@@ -199,7 +174,7 @@
       margin-bottom: auto;
       margin-left: 10px;
       border-radius: 0 15px 15px 15px;
-      background-color: #dcf2fc;
+      background-color: #82ccdd;
       padding: 10px;
       position: relative;
     }
@@ -211,7 +186,7 @@
       margin-bottom: auto;
       margin-right: 10px;
       border-radius: 15px 0 15px 15px;
-      background-color: #fbfbfb;
+      background-color: #78e08f;
       padding: 10px;
       position: relative;
     }
@@ -272,9 +247,6 @@
     .logo {
       max-width: 192px;
     }
-    .navbar {
-      max-height: 80px;
-    }
     .navbar-brand {
         margin-right:0px !important
       }
@@ -288,7 +260,7 @@
         margin-top: 15px !important;
       }
       .card{
-			  height: calc(75vh);  /* altura reducida para móviles */
+			  height: calc(90vh);  /* altura reducida para móviles */
 		  }
       .logo {
         max-width: 112px;
@@ -302,7 +274,7 @@
       border: 18px solid transparent;
       border-top-width: 0;
       left: -28px;
-      border-right-color: #dcf2fc;
+      border-right-color: #82ccdd;
       border-right-width: 16px;
     }
     .justify-content-end .msg_container_send:after {
@@ -313,14 +285,14 @@
       border: 18px solid transparent;
       border-top-width: 0;
       right: -28px;
-      border-left-color: #fbfbfb;
+      border-left-color: #78e08f;
       border-left-width: 16px;
     }
-    .card-dark #userInput::placeholder {
+    #userInput::placeholder {
     color: #ced4da;
     opacity: 1; /* Firefox */
     }
-    .card-dark #userInput::-ms-input-placeholder { /* Edge 12 -18 */
+    #userInput::-ms-input-placeholder { /* Edge 12 -18 */
       color: #ced4da;
     }
 
@@ -339,62 +311,60 @@
             gap: 5px;
         }
     }
-    .h-90 {
-      height: calc(100vh - 80px);
-    }
     </style>
 	</head>
 
 	<body>
+    
+		<div class="container-fluid h-100">
+			<div class="row justify-content-center h-100">
+				<div class="col-md-10 col-lg-10 col-xl-8 chat">
+        
+					<div class="card">
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-light static-top">
-        <div class="container">
-          <a class="navbar-brand" href="#">
-            <img class="logo" src="https://i.imgur.com/2L8UmSR.png" alt="...">
-          </a>
-          <a class="navbar-brand" href="#">
-            <img class="logo" src="https://i.imgur.com/U3QSzo0.png" alt="...">
-          </a>
-          <a class="navbar-brand" href="#">
-            <img class="logo" src="https://cdn.worldvectorlogo.com/logos/dell-technologies-logo.svg" alt="...">
-          </a>
-        </div>
-      </nav>
-      
-      <div class="container-fluid h-90">
-        <div class="row justify-content-center h-90">
-          <div class="col-md-10 col-lg-10 col-xl-8 chat">
-            <div class="card card-light">
-              <div class="card-header msg_head">
-                <div class="d-flex bd-highlight">
-                  <div class="img_cont">
-                    <img src="https://i.imgur.com/Rzi614z.png" class="rounded-circle user_img">
-                    <span class="online_icon"></span>
-                  </div>
-                  <div class="user_info">
-                    <span>Karting Experience</span>
-                    <p>Miércoles 12 de Marzo</p>
-                  </div>
-                </div>
-              </div>
-              <div id="chat-container" class="card-body msg_card_body">
-              </div>
-              <div class="card-footer">
-                <div class="input-group">
-                  <input id="userInput" type="text" class="form-control type_msg text_input_btn" placeholder="Escribe un mensaje..."
-                    aria-label="Recipient's username" aria-describedby="button-addon2" />
-                  <div class="input-group-append">
-                    <button id="sendBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary send_btn btn-light" type="button" id="button-addon2" style="padding-top: .55rem;">
-                      Enviar
-                    </button>
-                  </div>
-                </div>
+            <div class="card-header navbar navbar-expand-lg bg-light static-top">
+              <div class="container">
+                <a class="navbar-brand" href="#">
+                  <img class="logo" src="https://i.imgur.com/2L8UmSR.png" alt="...">
+                </a>
+                <a class="navbar-brand" href="#">
+                  <img class="logo" src="https://i.imgur.com/U3QSzo0.png" alt="...">
+                </a>
+                <a class="navbar-brand" href="#">
+                  <img class="logo" src="https://cdn.worldvectorlogo.com/logos/dell-technologies-logo.svg" alt="...">
+                </a>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
+						<div class="card-header msg_head">
+							<div class="d-flex bd-highlight">
+								<div class="img_cont">
+									<img src="https://i.imgur.com/Rzi614z.png" class="rounded-circle user_img">
+									<span class="online_icon"></span>
+								</div>
+								<div class="user_info">
+									<span>Karting Experience</span>
+                  <p>Miércoles 12 de Marzo</p>
+								</div>
+							</div>
+						</div>
+						<div id="chat-container" class="card-body msg_card_body">
+            </div>
+						<div class="card-footer">
+							<div class="input-group">
+                <input id="userInput" type="text" class="form-control type_msg text_input_btn" placeholder="Escribe un mensaje..."
+                  aria-label="Recipient's username" aria-describedby="button-addon2" />
+								<div class="input-group-append">
+                  <button id="sendBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary send_btn" type="button" id="button-addon2" style="padding-top: .55rem;">
+                    Enviar
+                  </button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
     <script>
         // Referencia al contenedor del chat
@@ -536,7 +506,9 @@
 
         // Mostrar mensaje inicial de bienvenida del asistente
         addMessage(`¡Hola! Soy KartBot, tu asistente oficial del Karting Experience 2025 🏁⚡
-                    Organizado por APC Schneider Electric, Dell y Tecnoglobal. ¿En qué puedo acelerar tu experiencia?
+Organizado por APC Schneider Electric, Dell y Tecnoglobal.
+
+¿En qué puedo acelerar tu experiencia?
 
 Horarios y ubicación 🕒📍
 

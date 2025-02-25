@@ -23,7 +23,7 @@
 			height: 100%;
 			margin: 0;
       background-image: url("https://i.imgur.com/tHQZkXn.jpeg"); /* The image used */
-      background-color: #ffffff; /* Used if the image is unavailable */
+      background-color: #FCFAEC; /* Used if the image is unavailable */
       background-position: center; /* Center the image */
       background-repeat: no-repeat; /* Do not repeat the image */
       background-size: cover; /* Resize the background image to cover the entire container */
@@ -199,7 +199,7 @@
       margin-bottom: auto;
       margin-left: 10px;
       border-radius: 0 15px 15px 15px;
-      background-color: #dcf2fc;
+      background-color: #fbfbfb;
       padding: 10px;
       position: relative;
     }
@@ -211,7 +211,7 @@
       margin-bottom: auto;
       margin-right: 10px;
       border-radius: 15px 0 15px 15px;
-      background-color: #fbfbfb;
+      background-color: #e2ffc9;
       padding: 10px;
       position: relative;
     }
@@ -277,22 +277,6 @@
     }
     .navbar-brand {
         margin-right:0px !important
-      }
-    @media(max-width: 576px){
-      .contacts_card{
-        margin-bottom: 15px !important;
-      }
-    }
-    @media(max-width:768px){
-      .chat {
-        margin-top: 15px !important;
-      }
-      .card{
-			  height: calc(75vh);  /* altura reducida para móviles */
-		  }
-      .logo {
-        max-width: 112px;
-      }
     }
     .justify-content-start .msg_container:before {
       content: '';
@@ -302,7 +286,7 @@
       border: 18px solid transparent;
       border-top-width: 0;
       left: -28px;
-      border-right-color: #dcf2fc;
+      border-right-color: #fbfbfb;
       border-right-width: 16px;
     }
     .justify-content-end .msg_container_send:after {
@@ -313,7 +297,7 @@
       border: 18px solid transparent;
       border-top-width: 0;
       right: -28px;
-      border-left-color: #fbfbfb;
+      border-left-color: #e2ffc9;
       border-left-width: 16px;
     }
     .card-dark #userInput::placeholder {
@@ -332,15 +316,31 @@
         justify-content: space-between;
         align-items: center;
     }
-
-    @media (max-width: 768px) {
-        .card-header .container {
-            justify-content: center;
-            gap: 5px;
-        }
+    .variable-height{
+      height: calc(100vh - 80px)
     }
-    .h-90 {
-      height: calc(100vh - 80px);
+    @media (max-width: 768px) {
+      .chat {
+        margin-top: 15px !important;
+      }
+      .card{
+			  height: calc(75vh);  /* altura reducida para móviles */
+		  }
+      .logo {
+        max-width: 112px;
+      }
+      .card-header .container {
+          justify-content: center;
+          gap: 5px;
+      }
+      .variable-height{
+        height: calc(75vh);
+      }
+    }
+    @media(max-width: 576px){
+      .contacts_card{
+        margin-bottom: 15px !important;
+      }
     }
     </style>
 	</head>
@@ -361,8 +361,8 @@
         </div>
       </nav>
       
-      <div class="container-fluid h-90">
-        <div class="row justify-content-center h-90">
+      <div class="container-fluid variable-height">
+        <div class="row justify-content-center variable-height">
           <div class="col-md-10 col-lg-10 col-xl-8 chat">
             <div class="card card-light">
               <div class="card-header msg_head">
@@ -420,7 +420,7 @@
 
           const img = document.createElement('img');
           img.src = isAssistant 
-            ? 'https://static-00.iconduck.com/assets.00/user-avatar-robot-icon-511x512-gi8lbmym.png' 
+            ? 'https://i.imgur.com/HZhsXT8.png' 
             : 'https://i.ibb.co/jvf5rMrP/user-avatar-1-256x255.png';
           img.alt = 'avatar';
           img.className = 'rounded-circle user_img_msg';
@@ -453,7 +453,7 @@
           imgCont.className = 'img_cont_msg';
 
           const img = document.createElement('img');
-          img.src = 'https://static-00.iconduck.com/assets.00/user-avatar-robot-icon-511x512-gi8lbmym.png';
+          img.src = 'https://i.imgur.com/HZhsXT8.png';
           img.alt = 'avatar';
           img.className = 'rounded-circle user_img_msg';
 
